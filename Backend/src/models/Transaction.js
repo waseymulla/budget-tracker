@@ -4,10 +4,17 @@
 import mongoose from 'mongoose';
 
 const transactionSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },     
     type: {
         type: String,
         enum: ['income', 'expense'],
-        required: true
+        required: true,
+        lowercase: true, 
+        trim: true     
     },
     amount: {
         type: Number,
@@ -17,6 +24,7 @@ const transactionSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
+        lowercase: true,
         trim: true
     },
     date: {
@@ -31,6 +39,10 @@ const transactionSchema = new mongoose.Schema({
 }, {
     timestamps: true // automatically manage createdAt and updatedAt fields
 });
+
+transactionSchema.index({ userId: 1, date: -1 });      
+transactionSchema.index({ userId: 1, type: 1 });       
+transactionSchema.index({ userId: 1, category: 1 });   
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
 
