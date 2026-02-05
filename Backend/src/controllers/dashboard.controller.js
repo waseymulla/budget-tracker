@@ -7,12 +7,13 @@
 // if no transactions, return zeros for income, expense, balance, and empty array for recent transactions
 // error only for input is invalid date formats
 
+import mongoose from "mongoose";
 import Transaction from "../models/Transaction.js";
 import buildDateRangeFilter from "./dashboardFilter.controllerHelper.js";
 
 export const getDashboardSummary = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = new mongoose.Types.ObjectId(req.user.id);
     const dateInfo = buildDateRangeFilter(req.query);
 
     if (dateInfo?.error) {
@@ -86,7 +87,7 @@ export const getDashboardSummary = async (req, res) => {
 
 export const getPieChartData = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = new mongoose.Types.ObjectId(req.user.id);
     const dateInfo = buildDateRangeFilter(req.query);
 
     if (dateInfo?.error) {
@@ -151,7 +152,7 @@ export const getPieChartData = async (req, res) => {
 
 export const getBarChartData = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = new mongoose.Types.ObjectId(req.user.id);
     const yearParam = req.query.year;
 
     // Default to current year if not provided

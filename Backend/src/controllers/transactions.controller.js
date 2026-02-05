@@ -2,6 +2,7 @@
 //createTranasaction(res,req)
 //getAllTransactions(req,res)
 
+import mongoose from "mongoose";
 import Transaction from "../models/Transaction.js";
 
 export const createTransaction = async (req, res) => {
