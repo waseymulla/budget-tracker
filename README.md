@@ -98,4 +98,4 @@ The frontend uses a Vite proxy to call `/api` → `http://localhost:8000`.
 - Deploy (Render + Netlify)
 
 ---
-If you’re a recruiter or mentor, feel free to ask about the architecture — I can walk through the API, auth flow, and data model decisions in detail.
+If you’re a recruiter or mentor, feel free to ask about the architecture. I can walk through the API, auth flow, and data model decisions in detail.
